@@ -8,7 +8,6 @@ import PeopleAltTwoToneIcon from '@mui/icons-material/PeopleAltTwoTone'; import 
 import axios from 'axios';
 import { Alert } from '@mui/material'
 import CircularProgress from '@mui/material/CircularProgress';
-import { LoadingButton } from '@mui/lab';
 import { useNavigate } from 'react-router-dom';
 
 const columns = [
@@ -57,26 +56,35 @@ const DashboardScreen = () => {
     }
 
     return (
-        <Box sx={{ width: '70%', maxWidth: '700px', margin: 'auto', display: 'flex', flexDirection: 'column' }}>
+        <Box
+            sx={{ width: '70%', maxWidth: '700px', margin: 'auto', display: 'flex', flexDirection: 'column' }}
+            role='main'
+            aria-label='Main content'
+        >
             <Button
                 onClick={onLogoutClick}
                 sx={{ alignSelf: 'end', marginBottom: '.2rem' }}
                 variant="text"
-                color="secondary">
+                color="secondary"
+                aria-label='Logout'
+            >
                 Logout
             </Button>
-            <Card >
+            <Card role='region' aria-label='User list section'>
                 <Box sx={{ marginTop: '.5rem' }}>
                     <Box sx={{ marginTop: '.3rem' }}>
-                        <PeopleAltTwoToneIcon color='primary' fontSize='large' />
+                        <PeopleAltTwoToneIcon color='primary' fontSize='large' aria-hidden='true' />
                     </Box>
-                    <Box sx={{ fontWeight: 'bold', marginTop: '-1.5rem', marginBottom: '-1rem', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+                    <Box
+                        sx={{ fontWeight: 'bold', marginTop: '-1.5rem', marginBottom: '-1rem', display: 'flex', justifyContent: 'center', alignItems: 'center' }}
+                        aria-label='User list'
+                    >
                         <h3>Users list</h3>
-                        {loading && <>&nbsp;&nbsp;<CircularProgress size={'1rem'} /></>}
+                        {loading && <>&nbsp;&nbsp;<CircularProgress size={'1rem'} aria-label='Loading indicator' /></>}
                     </Box>
                 </Box>
 
-                <div style={{ height: 400, width: '100%' }}>
+                <div style={{ height: 400, width: '100%' }} role='grid' aria-label='User data grid'>
 
                     <DataGrid
                         rows={rows}
@@ -87,11 +95,11 @@ const DashboardScreen = () => {
                             },
                         }}
                         pageSizeOptions={[5, 10]}
-
+                        aria-label='User data grid'
                     />
 
                 </div>
-                {fetchError.error && <Alert severity="error">{fetchError.message}</Alert>}
+                {fetchError.error && <Alert severity="error" role='alert'>{fetchError.message}</Alert>}
 
             </Card>
         </Box>

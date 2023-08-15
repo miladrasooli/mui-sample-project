@@ -56,12 +56,11 @@ const LoginScreen = () => {
                 </Box>
             </Box>
             <form onSubmit={formik.handleSubmit}>
-                <CardContent >
+                <CardContent>
                     <Grid container spacing={2}>
                         <Grid xs={12} md={12}>
                             <TextField
                                 autoFocus
-                                
                                 fullWidth
                                 size='small'
                                 id="email"
@@ -72,6 +71,8 @@ const LoginScreen = () => {
                                 onBlur={formik.handleBlur}
                                 error={formik.touched.email && Boolean(formik.errors.email)}
                                 helperText={formik.touched.email && formik.errors.email}
+                                aria-label="Email input"
+                                aria-required="true"
                             />
                         </Grid>
                         <Grid xs={12} md={12}>
@@ -82,15 +83,21 @@ const LoginScreen = () => {
                                 name="password"
                                 label="Password"
                                 type="password"
-                                value={formik.values.password ||null}
+                                value={formik.values.password || null}
                                 onChange={formik.handleChange}
                                 onBlur={formik.handleBlur}
                                 error={formik.touched.password && Boolean(formik.errors.password)}
                                 helperText={formik.touched.password && formik.errors.password}
+                                aria-label="Password input"
+                                aria-required="true"
                             />
                         </Grid>
                         <Grid xs={12}>
-                            <FormControlLabel control={<Checkbox defaultChecked size='small' />} label="Remember my credentials" />
+                            <FormControlLabel
+                                control={<Checkbox defaultChecked size='small' />}
+                                label="Remember my credentials"
+                                aria-label="Remember me checkbox"
+                            />
                         </Grid>
                         <Grid xs={12}>
                             <LoadingButton
@@ -98,6 +105,7 @@ const LoginScreen = () => {
                                 variant="contained"
                                 color="primary"
                                 type="submit"
+                                aria-label="Login button"
                             >
                                 Login
                             </LoadingButton>
